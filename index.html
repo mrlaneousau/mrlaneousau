@@ -86,18 +86,22 @@
               <input id="name" name="name" autocomplete="name" required />
             </div>
             <div>
+              <label for="name">Business name</label>
+              <input id="name" name="Business name" autocomplete="business" required />
+            </div>
+            <div>
               <label for="phone">Phone</label>
               <input id="phone" name="phone" autocomplete="tel" placeholder="Optional" />
             </div>
             <div>
               <label for="phone">How you heard of us?</label>
-              <input id="phone" name="phone" autocomplete="tel" placeholder="Optional" />
+              <input id="phone" name="heard by?" placeholder="Optional" />
             </div>
           </div>
 
           <label for="email">Email</label>
           <!-- IMPORTANT: keep name="email" for Reply-To -->
-          <input id="email" type="email" name="email" autocomplete="email" required />
+          <input id="email" type="email" name="email" placeholder="e.g. john@gmail.com" autocomplete="email" required />
 
           <label for="service">What do you need done?</label>
           <input id="service" name="service" placeholder="e.g. quote, custom order, questions" />
