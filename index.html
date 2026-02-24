@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Business</title>
+  <style>
+    body { font-family: system-ui, Arial; margin: 0; background: #0b0b0f; color: #fff; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 28px; }
+    .hero { padding: 44px 0 18px; }
+    h1 { font-size: 42px; margin: 0 0 10px; }
+    p { line-height: 1.6; opacity: 0.9; margin: 0 0 12px; }
+    .grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 18px; margin-top: 18px; }
+    .card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.14); border-radius: 18px; padding: 18px; }
+    .pill { display:inline-block; padding: 7px 11px; border-radius: 999px; border:1px solid rgba(255,255,255,0.16); margin: 6px 8px 0 0; font-size: 13px; }
+    label { display:block; font-size: 13px; margin: 10px 0 6px; opacity: .9; }
+    input, textarea, button {
+      width: 100%; box-sizing: border-box; border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 12px; font-size: 15px; background: rgba(0,0,0,0.25); color: #fff;
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    button { cursor: pointer; font-weight: 800; padding: 12px 14px; }
+    .row { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .small { font-size: 12px; opacity: .75; margin-top: 10px; }
+    footer { opacity: .7; font-size: 12px; padding: 26px 0; }
+    a { color: #fff; opacity: .9; }
+    @media (max-width: 880px) { .grid { grid-template-columns: 1fr; } }
+
+    /* honeypot hidden */
+    .hp { position: absolute; left: -9999px; top: -9999px; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Your Business Name</h1>
+      <p>Say what you do in one line. Example: “Custom 3D printing + quick quotes for local projects.”</p>
+      <span class="pill">Fast quotes</span>
+      <span class="pill">Custom work</span>
+      <span class="pill">Local pickup/delivery</span>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <h2 style="margin:0 0 10px;">What I do</h2>
+        <p><strong>Service 1:</strong> quick one-liner.</p>
+        <p><strong>Service 2:</strong> quick one-liner.</p>
+        <p><strong>Service 3:</strong> quick one-liner.</p>
+
+        <h3 style="margin:18px 0 10px;">How it works</h3>
+        <ol style="margin:0; padding-left:18px; line-height:1.7;">
+          <li>You send what you need</li>
+          <li>I confirm price + timeframe</li>
+          <li>I deliver / you pick up</li>
+        </ol>
+
+        <p class="small" style="margin-top:14px;">
+          Prefer direct contact? Email: <a href="mailto:you@example.com">you@example.com</a>
+        </p>
+      </section>
+
+      <aside class="card">
+        <h2 style="margin:0 0 10px;">Get a quote</h2>
+        <p class="small" style="margin-top:0;">Drop your details and I’ll hit you back.</p>
+
+        <form action="https://formspree.io/f/mgolpbvg" method="POST">
+          <!-- Honeypot (spam trap) -->
+          <div class="hp">
+            <label>Leave this empty</label>
+            <input name="_gotcha" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" autocomplete="name" required />
+            </div>
+            <div>
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" autocomplete="tel" placeholder="Optional" />
+            </div>
+          </div>
+
+          <label for="email">Email</label>
+          <!-- IMPORTANT: keep name="email" for Reply-To -->
+          <input id="email" type="email" name="email" autocomplete="email" required />
+
+          <label for="service">What do you need?</label>
+          <input id="service" name="service" placeholder="e.g. quote, custom order, questions" />
+
+          <label for="message">Details</label>
+          <textarea id="message" name="message" placeholder="Quantity, size, deadline, links, etc." required></textarea>
+
+          <label style="display:flex; gap:10px; align-items:flex-start; margin-top:12px;">
+            <input type="checkbox" name="consent" required style="width:auto; margin-top:4px;" />
+            <span style="font-size:12px; opacity:.8;">
+              I agree to be contacted by email or phone about my enquiry.
+            </span>
+          </label>
+
+          <input type="hidden" name="_subject" value="New website lead" />
+
+          <button type="submit" style="margin-top:12px;">Send</button>
+          <p class="small">Your info is only used to respond to your enquiry.</p>
+        </form>
+
+        <p class="small">
+          Want a custom “Thanks” page? Formspree can redirect after submit (depending on plan) via form settings. :contentReference[oaicite:2]{index=2}
+        </p>
+      </aside>
+    </div>
+
+    <footer>
+      © <span id="y"></span> Your Business • ABN (optional) • Your area
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
