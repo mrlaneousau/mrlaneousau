@@ -1,76 +1,173 @@
-<!-- ONLY SHOWING NEW/UPDATED PARTS SO YOU CAN DROP THEM IN -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MRlaneous</title>
 
-<!-- ✅ CONTACT SECTION UPDATE -->
-<p class="small" style="margin-top:14px;">
-  Prefer direct contact? Email: <a href="mailto:declans@mrlaneous.com">declans@mrlaneous.com</a><br>
-  ABN: 15 115 065 641
-</p>
+  <style>
+    :root{
+      --bg:#0b0b0f;
+      --card:rgba(255,255,255,0.04);
+      --border:rgba(255,255,255,0.14);
+      --border2:rgba(255,255,255,0.18);
+      --text:#fff;
+      --muted:rgba(255,255,255,0.78);
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+    }
 
+    *{ box-sizing:border-box; }
+    body { font-family: system-ui, Arial; margin: 0; background: var(--bg); color: var(--text); }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 28px; }
 
-<!-- ✅ ADD THIS NEW SECTION UNDER YOUR GRID (before footer) -->
-<section class="card" style="margin-top:18px;">
-  <h2 style="margin:0 0 10px;">Terms & Liability</h2>
-  <p class="small">
-    By requesting a service, you agree that MRlaneous is not liable for pre-existing damage, 
-    unforeseen issues, or delays outside of reasonable control. All work is carried out with care 
-    and to a high standard. Quotes are estimates and may change based on actual job requirements. 
-    Payment is required upon completion unless otherwise agreed.
-  </p>
-</section>
+    .topbar{
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+      background: rgba(11,11,15,0.7);
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+    .topbarInner{
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 12px 28px;
+      display:flex;
+      justify-content:space-between;
+    }
 
+    .btn{
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.25);
+      color: #fff;
+      text-decoration:none;
+      font-weight: 800;
+    }
 
-<!-- ✅ ADD THIS INVOICE GENERATOR -->
-<section class="card" style="margin-top:18px;">
-  <h2 style="margin:0 0 10px;">Quick Invoice Generator</h2>
+    h1 { font-size: 42px; margin: 0 0 10px; }
+    p { opacity: .85; }
 
-  <div class="row">
-    <input id="invClient" placeholder="Client name" />
-    <input id="invService" placeholder="Service provided" />
-    <input id="invAmount" placeholder="Amount ($)" />
-    <input id="invDate" type="date" />
+    .grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px; }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    input, textarea, button{
+      width:100%;
+      margin-top:8px;
+      padding:10px;
+      border-radius:10px;
+      border:1px solid var(--border2);
+      background:#111;
+      color:#fff;
+    }
+
+    footer{ margin-top:30px; opacity:.7; font-size:12px; }
+  </style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="topbarInner">
+    <strong>MRlaneous</strong>
+    <div>
+      <a class="btn" href="#quote">Quote</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <h1>MRlaneous</h1>
+  <p>Services for businesses and individuals that you can’t find time to do.</p>
+
+  <div class="grid">
+
+    <div class="card">
+      <h2>What I do</h2>
+      <p>Cleaning, repairs, maintenance and more.</p>
+
+      <!-- ✅ ABN added here -->
+      <p style="margin-top:12px;">
+        Contact: declans@mrlaneous.com<br>
+        ABN: 15 115 065 641
+      </p>
+    </div>
+
+    <div class="card" id="quote">
+      <h2>Get a quote</h2>
+
+      <form action="https://formspree.io/f/mgolpbvg" method="POST">
+        <input name="name" placeholder="Name" required />
+        <input name="email" type="email" placeholder="Email" required />
+        <input name="service" placeholder="What do you need?" />
+        <textarea name="message" placeholder="Details..." required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+
   </div>
 
-  <button onclick="generateInvoice()" style="margin-top:10px;">
-    Generate Invoice
-  </button>
-
-  <div id="invoiceOutput" style="margin-top:14px; display:none; background:rgba(255,255,255,0.05); padding:14px; border-radius:12px;">
-  </div>
-</section>
-
-
-<!-- ✅ FOOTER UPDATE -->
-<footer>
-  © <span id="y"></span> MRlaneous • Gisborne VIC and surrounds<br>
-  ABN: 15 115 065 641
-</footer>
-
-
-<!-- ✅ ADD THIS SCRIPT AT THE BOTTOM -->
-<script>
-function generateInvoice(){
-  const client = document.getElementById("invClient").value;
-  const service = document.getElementById("invService").value;
-  const amount = document.getElementById("invAmount").value;
-  const date = document.getElementById("invDate").value;
-
-  const output = document.getElementById("invoiceOutput");
-
-  output.style.display = "block";
-  output.innerHTML = `
-    <h3>Invoice</h3>
-    <p><strong>Business:</strong> MRlaneous</p>
-    <p><strong>ABN:</strong> 15 115 065 641</p>
-    <p><strong>Date:</strong> ${date}</p>
-    <hr>
-    <p><strong>Billed To:</strong> ${client}</p>
-    <p><strong>Service:</strong> ${service}</p>
-    <p><strong>Total:</strong> $${amount}</p>
-    <hr>
-    <p style="font-size:12px; opacity:0.7;">
-      Payment due upon completion. Thank you for choosing MRlaneous.
+  <!-- ✅ TERMS -->
+  <div class="card" style="margin-top:18px;">
+    <h2>Terms & Liability</h2>
+    <p>
+      MRlaneous is not liable for pre-existing damage or unforeseen issues. 
+      Quotes may change depending on job requirements. 
+      Payment is due upon completion unless agreed otherwise.
     </p>
-    <button onclick="window.print()">Print / Save PDF</button>
+  </div>
+
+  <!-- ✅ INVOICE TOOL -->
+  <div class="card" style="margin-top:18px;">
+    <h2>Invoice Generator</h2>
+
+    <input id="client" placeholder="Client name" />
+    <input id="service" placeholder="Service" />
+    <input id="amount" placeholder="Amount $" />
+    <input id="date" type="date" />
+
+    <button onclick="makeInvoice()">Generate</button>
+
+    <div id="invoice" style="margin-top:10px;"></div>
+  </div>
+
+  <footer>
+    © <span id="year"></span> MRlaneous<br>
+    ABN: 15 115 065 641
+  </footer>
+
+</div>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+function makeInvoice(){
+  const c = document.getElementById("client").value;
+  const s = document.getElementById("service").value;
+  const a = document.getElementById("amount").value;
+  const d = document.getElementById("date").value;
+
+  document.getElementById("invoice").innerHTML = `
+    <h3>Invoice</h3>
+    <p>MRlaneous</p>
+    <p>ABN: 15 115 065 641</p>
+    <p>Date: ${d}</p>
+    <hr>
+    <p>Client: ${c}</p>
+    <p>Service: ${s}</p>
+    <p>Total: $${a}</p>
+    <button onclick="window.print()">Print</button>
   `;
 }
 </script>
+
+</body>
+</html>
