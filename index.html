@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MRlaneous</title>
+  <meta name="description" content="MRlaneous — services for businesses and individuals that you can’t find time to do. Fast quotes. Gisborne VIC & surrounds." />
 
   <style>
     :root{
@@ -13,17 +14,33 @@
       --border2:rgba(255,255,255,0.18);
       --text:#fff;
       --muted:rgba(255,255,255,0.78);
+      --muted2:rgba(255,255,255,0.65);
       --shadow: 0 18px 60px rgba(0,0,0,.45);
       --radius:18px;
     }
 
     *{ box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
     body { font-family: system-ui, Arial; margin: 0; background: var(--bg); color: var(--text); }
+
+    body::before{
+      content:"";
+      position:fixed; inset:-20%;
+      background:
+        radial-gradient(600px 300px at 20% 10%, rgba(255,255,255,0.10), transparent 60%),
+        radial-gradient(560px 280px at 80% 20%, rgba(255,255,255,0.08), transparent 60%),
+        radial-gradient(700px 380px at 55% 85%, rgba(255,255,255,0.06), transparent 60%);
+      pointer-events:none;
+      z-index:-1;
+      filter: blur(6px);
+    }
+
     .wrap { max-width: 1040px; margin: 0 auto; padding: 28px; }
 
     .topbar{
       position: sticky;
       top: 0;
+      z-index: 50;
       backdrop-filter: blur(10px);
       background: rgba(11,11,15,0.7);
       border-bottom: 1px solid rgba(255,255,255,0.10);
@@ -33,7 +50,9 @@
       margin: 0 auto;
       padding: 12px 28px;
       display:flex;
+      align-items:center;
       justify-content:space-between;
+      gap: 12px;
     }
 
     .btn{
@@ -46,128 +65,94 @@
       font-weight: 800;
     }
 
-    h1 { font-size: 42px; margin: 0 0 10px; }
-    p { opacity: .85; }
+    h1 { font-size: 44px; margin: 0 0 10px; }
+    p { line-height: 1.6; opacity: 0.92; margin: 0 0 12px; color: var(--muted); }
 
-    .grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px; }
+    .grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 18px; margin-top: 18px; }
 
-    .card{
+    .card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 18px;
     }
 
-    input, textarea, button{
-      width:100%;
-      margin-top:8px;
-      padding:10px;
-      border-radius:10px;
-      border:1px solid var(--border2);
-      background:#111;
-      color:#fff;
+    input, textarea, button {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid var(--border2);
+      padding: 12px;
+      font-size: 15px;
+      background: rgba(0,0,0,0.25);
+      color: #fff;
     }
 
-    footer{ margin-top:30px; opacity:.7; font-size:12px; }
+    .row { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .small { font-size: 12px; opacity: .78; margin-top: 10px; color: var(--muted2); }
+
+    footer { opacity: .7; font-size: 12px; padding: 26px 0; color: var(--muted2); }
   </style>
 </head>
 
 <body>
 
-<div class="topbar">
-  <div class="topbarInner">
-    <strong>MRlaneous</strong>
-    <div>
-      <a class="btn" href="#quote">Quote</a>
+  <div class="topbar">
+    <div class="topbarInner">
+      <div><strong>MRlaneous</strong></div>
+      <div>
+        <a class="btn" href="#quote">Get a quote</a>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="wrap">
+  <div class="wrap">
 
-  <h1>MRlaneous</h1>
-  <p>Services for businesses and individuals that you can’t find time to do.</p>
+    <h1>MRlaneous</h1>
+    <p>Services for businesses and individuals that you can’t find time to do.</p>
 
-  <div class="grid">
+    <div class="grid">
 
-    <div class="card">
-      <h2>What I do</h2>
-      <p>Cleaning, repairs, maintenance and more.</p>
+      <section class="card">
+        <h2>What I do</h2>
+        <p>Cleaning, deep cleaning, repairs, maintenance and more.</p>
 
-      <!-- ✅ ABN added here -->
-      <p style="margin-top:12px;">
-        Contact: declans@mrlaneous.com<br>
-        ABN: 15 115 065 641
-      </p>
+        <!-- ✅ ABN ADDED HERE -->
+        <p class="small" style="margin-top:14px;">
+          Prefer direct contact? Email: <a href="mailto:declans@mrlaneous.com">declans@mrlaneous.com</a><br>
+          ABN: 15 115 065 641
+        </p>
+      </section>
+
+      <aside class="card" id="quote">
+        <h2>Get a quote</h2>
+
+        <form action="https://formspree.io/f/mgolpbvg" method="POST">
+          <div class="row">
+            <input name="name" placeholder="Name" required />
+            <input name="business_name" placeholder="Business name" required />
+          </div>
+
+          <input type="email" name="email" placeholder="Email" required />
+          <input name="service" placeholder="What do you need done?" />
+          <textarea name="message" placeholder="Details..." required></textarea>
+
+          <button type="submit">Send</button>
+        </form>
+      </aside>
+
     </div>
 
-    <div class="card" id="quote">
-      <h2>Get a quote</h2>
-
-      <form action="https://formspree.io/f/mgolpbvg" method="POST">
-        <input name="name" placeholder="Name" required />
-        <input name="email" type="email" placeholder="Email" required />
-        <input name="service" placeholder="What do you need?" />
-        <textarea name="message" placeholder="Details..." required></textarea>
-        <button type="submit">Send</button>
-      </form>
-    </div>
+    <!-- ✅ FOOTER WITH ABN -->
+    <footer>
+      © <span id="y"></span> MRlaneous • Gisborne VIC and surrounds<br>
+      ABN: 15 115 065 641
+    </footer>
 
   </div>
 
-  <!-- ✅ TERMS -->
-  <div class="card" style="margin-top:18px;">
-    <h2>Terms & Liability</h2>
-    <p>
-      MRlaneous is not liable for pre-existing damage or unforeseen issues. 
-      Quotes may change depending on job requirements. 
-      Payment is due upon completion unless agreed otherwise.
-    </p>
-  </div>
-
-  <!-- ✅ INVOICE TOOL -->
-  <div class="card" style="margin-top:18px;">
-    <h2>Invoice Generator</h2>
-
-    <input id="client" placeholder="Client name" />
-    <input id="service" placeholder="Service" />
-    <input id="amount" placeholder="Amount $" />
-    <input id="date" type="date" />
-
-    <button onclick="makeInvoice()">Generate</button>
-
-    <div id="invoice" style="margin-top:10px;"></div>
-  </div>
-
-  <footer>
-    © <span id="year"></span> MRlaneous<br>
-    ABN: 15 115 065 641
-  </footer>
-
-</div>
-
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-
-function makeInvoice(){
-  const c = document.getElementById("client").value;
-  const s = document.getElementById("service").value;
-  const a = document.getElementById("amount").value;
-  const d = document.getElementById("date").value;
-
-  document.getElementById("invoice").innerHTML = `
-    <h3>Invoice</h3>
-    <p>MRlaneous</p>
-    <p>ABN: 15 115 065 641</p>
-    <p>Date: ${d}</p>
-    <hr>
-    <p>Client: ${c}</p>
-    <p>Service: ${s}</p>
-    <p>Total: $${a}</p>
-    <button onclick="window.print()">Print</button>
-  `;
-}
-</script>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
