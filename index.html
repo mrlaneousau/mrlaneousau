@@ -1,205 +1,425 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MRlaneous</title>
-<meta name="description" content="MRlaneous — services for businesses and individuals that you can’t find time to do. Fast quotes. Gisborne VIC & surrounds." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MRlaneous</title>
+  <meta name="description" content="MRlaneous — services for businesses and individuals that you can’t find time to do. Fast quotes. Gisborne VIC & surrounds." />
+  <style>
+    :root{
+      --bg:#0b0b0f;
+      --card:rgba(255,255,255,0.04);
+      --border:rgba(255,255,255,0.14);
+      --border2:rgba(255,255,255,0.18);
+      --text:#fff;
+      --muted:rgba(255,255,255,0.78);
+      --muted2:rgba(255,255,255,0.65);
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+    }
+    *{ box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: system-ui, Arial; margin: 0; background: var(--bg); color: var(--text); }
 
-<style>
-:root{
---bg:#0b0b0f;
---card:rgba(255,255,255,0.04);
---border:rgba(255,255,255,0.14);
---border2:rgba(255,255,255,0.18);
---text:#fff;
---muted:rgba(255,255,255,0.78);
---muted2:rgba(255,255,255,0.65);
---shadow: 0 18px 60px rgba(0,0,0,.45);
---radius:18px;
-}
+    /* subtle background glow */
+    body::before{
+      content:"";
+      position:fixed; inset:-20%;
+      background:
+        radial-gradient(600px 300px at 20% 10%, rgba(255,255,255,0.10), transparent 60%),
+        radial-gradient(560px 280px at 80% 20%, rgba(255,255,255,0.08), transparent 60%),
+        radial-gradient(700px 380px at 55% 85%, rgba(255,255,255,0.06), transparent 60%);
+      pointer-events:none;
+      z-index:-1;
+      filter: blur(6px);
+    }
 
-*{ box-sizing:border-box; }
-html { scroll-behavior: smooth; }
-body { font-family: system-ui, Arial; margin: 0; background: var(--bg); color: var(--text); }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 28px; }
 
-body::before{
-content:"";
-position:fixed; inset:-20%;
-background:
-radial-gradient(600px 300px at 20% 10%, rgba(255,255,255,0.10), transparent 60%),
-radial-gradient(560px 280px at 80% 20%, rgba(255,255,255,0.08), transparent 60%),
-radial-gradient(700px 380px at 55% 85%, rgba(255,255,255,0.06), transparent 60%);
-pointer-events:none;
-z-index:-1;
-filter: blur(6px);
-}
+    /* top bar */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,11,15,0.7);
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+    .topbarInner{
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 12px 28px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .logo{
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+      display:grid;
+      place-items:center;
+      font-weight: 900;
+      letter-spacing: .5px;
+    }
+    .brandText{
+      font-weight: 800;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .navActions{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.25);
+      color: #fff;
+      text-decoration:none;
+      font-weight: 800;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.07);
+    }
+    .btn:active{ transform: translateY(0px) scale(.99); }
 
-.wrap { max-width: 1040px; margin: 0 auto; padding: 28px; }
+    .hero { padding: 34px 0 18px; }
+    h1 { font-size: 44px; margin: 0 0 10px; letter-spacing: -0.4px; }
+    p { line-height: 1.6; opacity: 0.92; margin: 0 0 12px; color: var(--muted); }
 
-.topbar{
-position: sticky;
-top: 0;
-z-index: 50;
-backdrop-filter: blur(10px);
-background: rgba(11,11,15,0.7);
-border-bottom: 1px solid rgba(255,255,255,0.10);
-}
-.topbarInner{
-max-width: 1040px;
-margin: 0 auto;
-padding: 12px 28px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap: 12px;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
 
-.brand{
-display:flex;
-align-items:center;
-gap: 10px;
-min-width: 0;
-}
-.logo{
-width: 34px; height: 34px;
-border-radius: 12px;
-border: 1px solid rgba(255,255,255,0.18);
-background: rgba(255,255,255,0.06);
-display:grid;
-place-items:center;
-font-weight: 900;
-letter-spacing: .5px;
-}
-.brandText{
-font-weight: 800;
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
-}
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: none;
+      transition: transform .14s ease, border-color .14s ease, box-shadow .14s ease;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.22);
+      box-shadow: var(--shadow);
+    }
 
-.navActions{
-display:flex;
-gap: 10px;
-align-items:center;
-flex-wrap: wrap;
-justify-content:flex-end;
-}
+    .pill {
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      margin: 6px 8px 0 0;
+      font-size: 13px;
+      color: rgba(255,255,255,0.88);
+      background: rgba(255,255,255,0.03);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+    }
+    .pill:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.08);
+    }
 
-.btn{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-gap: 8px;
-padding: 10px 12px;
-border-radius: 14px;
-border: 1px solid rgba(255,255,255,0.18);
-background: rgba(0,0,0,0.25);
-color: #fff;
-text-decoration:none;
-font-weight: 800;
-cursor:pointer;
-}
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .chipBtn{
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.03);
+      color: rgba(255,255,255,0.9);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight: 800;
+      cursor:pointer;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+    }
+    .chipBtn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.08);
+    }
+    .chipBtn:active{ transform: translateY(0px) scale(.99); }
 
-.hero { padding: 34px 0 18px; }
-h1 { font-size: 44px; margin: 0 0 10px; }
-p { line-height: 1.6; margin: 0 0 12px; color: var(--muted); }
+    label {
+      display:block;
+      font-size: 13px;
+      margin: 10px 0 6px;
+      opacity: .9;
+      color: rgba(255,255,255,0.85);
+    }
 
-.grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 18px; margin-top: 18px; }
+    input, textarea, button {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid var(--border2);
+      padding: 12px;
+      font-size: 15px;
+      background: rgba(0,0,0,0.25);
+      color: #fff;
+      outline: none;
+      transition: border-color .12s ease, background .12s ease, transform .12s ease;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.05);
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    button { cursor: pointer; font-weight: 900; }
+    button:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+    }
 
-.card {
-background: var(--card);
-border: 1px solid var(--border);
-border-radius: var(--radius);
-padding: 18px;
-}
+    .row { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .small { font-size: 12px; opacity: .78; margin-top: 10px; color: var(--muted2); }
+    footer { opacity: .7; font-size: 12px; padding: 26px 0; color: var(--muted2); }
+    a { color: #fff; opacity: .92; }
 
-.row { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 880px) {
+      .grid { grid-template-columns: 1fr; }
+      h1 { font-size: 38px; }
+    }
 
-input, textarea, button {
-width: 100%;
-border-radius: 14px;
-border: 1px solid var(--border2);
-padding: 12px;
-background: rgba(0,0,0,0.25);
-color: #fff;
-}
+    /* honeypot hidden */
+    .hp { position: absolute; left: -9999px; top: -9999px; }
 
-.small { font-size: 12px; margin-top: 10px; color: var(--muted2); }
-
-footer { opacity: .7; font-size: 12px; padding: 26px 0; color: var(--muted2); }
-
-.hp { position: absolute; left: -9999px; top: -9999px; }
-</style>
+    /* toast */
+    .toast{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      max-width: 380px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events:none;
+      transition: opacity .18s ease, transform .18s ease;
+      color: rgba(255,255,255,0.92);
+      font-weight: 700;
+    }
+    .toast.show{
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  </style>
 </head>
-
 <body>
+  <!-- top bar -->
+  <div class="topbar">
+    <div class="topbarInner">
+      <div class="brand">
+        <div class="logo">M</div>
+        <div class="brandText">MRlaneous • Gisborne VIC</div>
+      </div>
+      <div class="navActions">
+        <a class="btn" href="/reports/">Reports</a>
+        <a class="btn" href="#quote">Get a quote</a>
+      </div>
+    </div>
+  </div>
 
-<div class="topbar">
-<div class="topbarInner">
-<div class="brand">
-<div class="logo">M</div>
-<div class="brandText">MRlaneous • Gisborne VIC</div>
-</div>
-<div class="navActions">
-<a class="btn" href="/reports/">Reports</a>
-<a class="btn" href="#quote">Get a quote</a>
-</div>
-</div>
-</div>
+  <div class="wrap">
+    <section class="hero" id="top">
+      <h1>MRlaneous</h1>
+      <p>Services for businesses and individuals that you can’t find time to do.</p>
 
-<div class="wrap">
+      <span class="pill">Fast quotes</span>
+      <span class="pill">Custom work</span>
+      <span class="pill">High quality</span>
+      <span class="pill">Local business</span>
+      <span class="pill">Time saving</span>
 
-<section class="hero">
-<h1>MRlaneous</h1>
-<p>Services for businesses and individuals that you can’t find time to do.</p>
-</section>
+      <div class="card" style="margin-top:16px;">
+        <h2 style="margin:0 0 10px;">Tap a service to pre-fill the quote form</h2>
+        <div class="chips">
+          <button class="chipBtn" type="button" data-service="Cleaning">Cleaning</button>
+          <button class="chipBtn" type="button" data-service="Deep cleaning">Deep cleaning</button>
+          <button class="chipBtn" type="button" data-service="Repairs">Repairs</button>
+          <button class="chipBtn" type="button" data-service="Maintenance">Maintenance</button>
+          <button class="chipBtn" type="button" data-service="Other (describe)">Other</button>
+        </div>
+        <p class="small">It’ll auto-fill “What do you need done?” for you.</p>
+      </div>
+    </section>
 
-<div class="grid">
+    <div class="grid">
+      <section class="card">
+        <h2 style="margin:0 0 10px;">What I do</h2>
+        <p><strong>Service 1:</strong> Cleaning</p>
+        <p><strong>Service 2:</strong> Deep cleaning</p>
+        <p><strong>Service 3:</strong> Repairs</p>
+        <p><strong>Service 4:</strong> Maintenance</p>
+        <p><strong>And lots more.</strong></p>
 
-<section class="card">
-<h2>What I do</h2>
-<p>Cleaning, deep cleaning, repairs, maintenance and more.</p>
+        <h3 style="margin:18px 0 10px;">How it works</h3>
+        <ol style="margin:0; padding-left:18px; line-height:1.7; color: rgba(255,255,255,0.82);">
+          <li>You send what you need done</li>
+          <li>You send your contact info</li>
+          <li>I confirm price + timeframe</li>
+          <li>I come over and deliver the service</li>
+        </ol>
 
-<!-- ✅ ABN ADDED HERE -->
-<p class="small">
-Email: <a href="mailto:declans@mrlaneous.com">declans@mrlaneous.com</a><br>
-ABN: 15 115 065 641
-</p>
+        <p class="small" style="margin-top:14px;">
+          Prefer direct contact? Email: <a href="mailto:declans@mrlaneous.com">declans@mrlaneous.com</a><br>
+          ABN: <a href="https://abr.business.gov.au/ABN/View?id=15115065641" target="_blank" rel="noopener noreferrer">15 115 065 641</a>
+        </p>
+      </section>
 
-</section>
+      <aside class="card" id="quote">
+        <h2 style="margin:0 0 10px;">Get a quote</h2>
+        <p class="small" style="margin-top:0;">Drop your details and I’ll hit you back.</p>
 
-<aside class="card" id="quote">
-<h2>Get a quote</h2>
+        <form id="quoteForm" action="https://formspree.io/f/mgolpbvg" method="POST">
+          <!-- Honeypot (spam trap) -->
+          <div class="hp">
+            <label>Leave this empty</label>
+            <input name="_gotcha" tabindex="-1" autocomplete="off" />
+          </div>
 
-<form id="quoteForm" action="https://formspree.io/f/mgolpbvg" method="POST">
+          <div class="row">
+            <div>
+              <label for="full_name">Name</label>
+              <input id="full_name" name="name" autocomplete="name" required />
+            </div>
+            <div>
+              <label for="business_name">Business name</label>
+              <input id="business_name" name="business_name" autocomplete="organization" required />
+            </div>
+            <div>
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="Optional" />
+            </div>
+            <div>
+              <label for="heard">How you heard of us?</label>
+              <input id="heard" name="heard_from" placeholder="Optional" />
+            </div>
+          </div>
 
-<div class="row">
-<input name="name" placeholder="Name" required />
-<input name="business_name" placeholder="Business name" required />
-</div>
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" placeholder="e.g. john@gmail.com" autocomplete="email" required />
 
-<input type="email" name="email" placeholder="Email" required />
-<input name="service" placeholder="What do you need done?" />
-<textarea name="message" placeholder="Details..." required></textarea>
+          <label for="service">What do you need done?</label>
+          <input id="service" name="service" placeholder="e.g. cleaning, repairs, maintenance" />
 
-<button type="submit">Send</button>
-</form>
-</aside>
+          <label for="message">Further details</label>
+          <textarea id="message" name="message" placeholder="What needs doing, where, and when?" required></textarea>
 
-</div>
+          <label style="display:flex; gap:10px; align-items:flex-start; margin-top:12px;">
+            <input type="checkbox" name="consent" required style="width:auto; margin-top:4px;" />
+            <span style="font-size:12px; opacity:.8;">
+              I agree to be contacted by email or phone about my enquiry.
+            </span>
+          </label>
 
-<!-- ✅ FOOTER WITH ABN -->
-<footer>
-© <span id="y"></span> MRlaneous • Gisborne VIC and surrounds<br>
-ABN: <a href="https://abr.business.gov.au/ABN/View?id=15115065641" target="_blank">15 115 065 641</a>
-</footer>
+          <input type="hidden" name="_subject" value="New website lead" />
 
-</div>
+          <button id="submitBtn" type="submit" style="margin-top:12px;">Send</button>
+          <p class="small" id="formStatus">Your info is only used to respond to your enquiry.</p>
+        </form>
+      </aside>
+    </div>
 
-<script>
-document.getElementById("y").textContent = new Date().getFullYear();
-</script>
+    <footer>
+      © <span id="y"></span> MRlaneous • Gisborne VIC and surrounds<br>
+      ABN: <a href="https://abr.business.gov.au/ABN/View?id=15115065641" target="_blank" rel="noopener noreferrer">15 115 065 641</a>
+    </footer>
+  </div>
 
+  <div class="toast" id="toast">Sent ✅ I’ll get back to you soon.</div>
+
+  <script>
+    // year
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // service chips -> autofill + scroll
+    const serviceInput = document.getElementById("service");
+    document.querySelectorAll(".chipBtn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        serviceInput.value = btn.dataset.service;
+        document.querySelector("#quote").scrollIntoView({ behavior: "smooth", block: "start" });
+        serviceInput.focus();
+      });
+    });
+
+    // phone cleanup (keeps digits + +)
+    const phone = document.getElementById("phone");
+    phone.addEventListener("input", () => {
+      phone.value = phone.value.replace(/[^\d+\s()-]/g, "");
+    });
+
+    // nicer submit UX (no redirect, shows toast)
+    const form = document.getElementById("quoteForm");
+    const btn = document.getElementById("submitBtn");
+    const status = document.getElementById("formStatus");
+    const toast = document.getElementById("toast");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = "Sending...";
+      status.textContent = "Sending your enquiry…";
+
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { "Accept": "application/json" }
+        });
+
+        if (res.ok) {
+          form.reset();
+          status.textContent = "Sent. I’ll reply soon.";
+          toast.classList.add("show");
+          setTimeout(() => toast.classList.remove("show"), 2600);
+        } else {
+          status.textContent = "Hmm, it didn’t send. Try again or email declans@mrlaneous.com";
+        }
+      } catch (err) {
+        status.textContent = "Network error. Try again or email declans@mrlaneous.com";
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Send";
+      }
+    });
+  </script>
 </body>
 </html>
