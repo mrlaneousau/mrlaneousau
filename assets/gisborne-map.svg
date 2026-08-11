@@ -1,0 +1,37 @@
+<svg width="960" height="760" viewBox="0 0 960 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="760" fill="transparent"/>
+  <g opacity="0.8" stroke="#7FB1D3" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M86 509C141 472 197 447 255 425C332 396 405 389 470 353C528 321 609 249 710 187C772 149 819 126 878 98"/>
+    <path d="M125 283C186 316 242 344 300 388C357 431 399 495 451 543C500 589 564 624 650 651"/>
+    <path d="M215 144C272 183 324 214 388 234C460 257 533 255 597 282C650 305 698 347 747 409C780 451 799 495 816 553"/>
+    <path d="M247 637C312 593 360 562 421 546C494 527 567 527 638 509C701 493 755 459 831 395"/>
+    <path d="M376 101C419 141 455 169 512 191C590 221 676 214 790 229"/>
+    <path d="M83 388C163 391 233 387 311 359C375 336 426 291 469 243C508 199 532 147 553 100"/>
+    <path d="M394 448C433 433 465 410 492 380C519 350 535 317 553 282"/>
+  </g>
+  <g opacity="0.55">
+    <circle cx="467" cy="357" r="20" fill="#6FA8C9"/>
+    <circle cx="467" cy="357" r="9" fill="#F6F3EE"/>
+    <path d="M467 402C500 376 517 351 517 324C517 295 495 273 467 273C439 273 417 295 417 324C417 351 434 376 467 402Z" fill="#6FA8C9"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#345168" opacity="0.75">
+    <text x="476" y="346" font-size="20" font-weight="700">GISBORNE</text>
+    <text x="585" y="294" font-size="15" font-weight="600">MOUNT MACEDON</text>
+    <text x="538" y="490" font-size="14" font-weight="600">NEW GISBORNE</text>
+    <text x="298" y="238" font-size="14" font-weight="600">MELTON</text>
+    <text x="171" y="512" font-size="14" font-weight="600">SUNBURY</text>
+    <text x="684" y="648" font-size="14" font-weight="600">RIDDELLS CREEK</text>
+  </g>
+  <g opacity="0.22" stroke="#345168" stroke-width="1.5">
+    <rect x="40" y="40" width="880" height="680" rx="32"/>
+    <path d="M80 680H880"/>
+    <path d="M120 80V680"/>
+    <path d="M280 80V680"/>
+    <path d="M440 80V680"/>
+    <path d="M600 80V680"/>
+    <path d="M760 80V680"/>
+    <path d="M80 200H880"/>
+    <path d="M80 360H880"/>
+    <path d="M80 520H880"/>
+  </g>
+</svg>

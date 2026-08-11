@@ -5,40 +5,74 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" sizes="128x128" href="/assets/favicon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/assets/site.css" />
   <title>Cleaning Job — March 1, 2026</title>
-  <style>
-    body { font-family: system-ui, Arial; margin: 0; background: #0b0b0f; color: #fff; }
-    .wrap { max-width: 1040px; margin: 0 auto; padding: 28px; }
-    .card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.14); border-radius: 18px; padding: 18px; margin-top: 14px; }
-    img { width: 100%; border-radius: 14px; margin-top: 10px; }
-    a { color: #fff; opacity: .9; }
-  </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Cleaning Job — March 1, 2026</h1>
-    <p style="opacity:.8;">Location: ______ • Duration: ______</p>
+  <div class="pageWrap">
+    <header class="topbar">
+      <div class="topbarInner">
+        <a class="brand" href="/">
+          <span class="logoBadge"><img src="/assets/mrlaneous-logo.png" alt="MRlaneous logo icon" /></span>
+          <span class="brandStack">
+            <img class="brandWordmark" src="/assets/mrlaneous-wordmark.png" alt="MRlaneous" />
+            <span class="brandSub">Report page</span>
+          </span>
+        </a>
+        <nav class="nav">
+          <a href="/">Home</a>
+          <a href="/about.html">About</a>
+          <a href="/reports/">Reports</a>
+          <a class="cta" href="/#quote">Get a quote</a>
+        </nav>
+      </div>
+    </header>
 
-    <div class="card">
-      <h2>Summary</h2>
-      <ul>
-        <li>What was done</li>
-        <li>Challenges</li>
-        <li>Outcome</li>
-      </ul>
-    </div>
+    <main class="container">
+      <section class="section" style="padding-top:3rem;">
+        <div class="panel">
+          <span class="eyebrow">Cleaning report</span>
+          <h1 class="heroTitle" style="font-size:clamp(2rem,4vw,3rem); margin-top:.8rem;">Cleaning Job — March 1, 2026</h1>
+          <p class="lead">Location: ______ • Duration: ______</p>
+        </div>
+      </section>
 
-    <div class="card">
-      <h2>Before</h2>
-      <img src="../assets/reports/2026-03-01-cleaning-job/befwore.webp" />
-    </div>
+      <section class="section reportHero">
+        <div class="panel">
+          <h2>Summary</h2>
+          <ul class="clean">
+            <li>What was done</li>
+            <li>Challenges</li>
+            <li>Outcome</li>
+          </ul>
+        </div>
+        <div class="panel callout">
+          <h2>Quick notes</h2>
+          <p>This page has been styled to match the rest of the refreshed site, so reports feel way more consistent and organised.</p>
+        </div>
+      </section>
 
-    <div class="card">
-      <h2>After</h2>
-      <img src="../assets/reports/2026-03-01-cleaning-job/afwter.jpeg" />
-    </div>
+      <section class="section gallery">
+        <div class="mediaCard">
+          <h2>Before</h2>
+          <img src="../assets/reports/2026-03-01-cleaning-job/befwore.webp" alt="Before cleaning" />
+        </div>
+        <div class="mediaCard">
+          <h2>After</h2>
+          <img src="../assets/reports/2026-03-01-cleaning-job/afwter.jpeg" alt="After cleaning" />
+        </div>
+      </section>
 
-    <p style="margin-top:20px;"><a href="/reports/">← Back to reports</a></p>
+      <p class="small" style="margin-top:1.5rem;"><a href="/reports/">← Back to reports</a></p>
+
+      <footer class="footer">
+        <div class="footerInner">
+          <div>© <span id="y"></span> MRlaneous • Gisborne VIC and surrounds</div>
+          <div><a href="mailto:declans@mrlaneous.com">declans@mrlaneous.com</a></div>
+        </div>
+      </footer>
+    </main>
   </div>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
 </body>
 </html>
